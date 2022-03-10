@@ -1,23 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SearchItem } from './SearchItem';
+import { useSelector } from 'react-redux';
 
 export const SearchList = (props) => {
 
-	const { loading } = props;
+	const { searching, dataList, isFocus, selected, inputLength } = props;
+
+	const apiData = useSelector((state) => state.searchWord.queries);
+	console.log(apiData)
 
 	return(
-		<Container>
-			<Compleate>추천 검색어</Compleate>
-			<SearchItem item={props.item}/>
-		</Container>
+		<>
+			{/* {
+				isFocus ? 
+				<Container>
+					<Compleate>{inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
+					{apiData && 
+						apiData.filter((x,index) => index < 7).map((item, index) => (
+							<div key={index} className={selected === item.id ? 'selected' : ''}>
+								<SearchItem item={item.name}/>
+							</div>
+						))
+					}
+				</Container> 
+				: ""
+			} */}
+		</>
 	)
-}
+};
 
 const Container = styled.div`
 	width: 41.25rem;
 	min-height: 50px;
+	max-height: 30rem;
 	height: auto;
+	overflow-y: scroll;
 	border-radius: 26px;
 	background-color: #fff;
 	padding-left: 20px;
@@ -25,6 +43,15 @@ const Container = styled.div`
 	padding-bottom: 10px;
 	box-sizing: border-box;
 	margin: 10px auto;
+
+	.selected {
+		font-weight: bold;
+		font-size: 1.5rem;
+		
+		svg {
+			font-size: 1.6rem;
+		}
+	}
 `
 
 const Compleate = styled.div`

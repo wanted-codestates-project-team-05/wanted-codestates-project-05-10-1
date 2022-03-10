@@ -6,7 +6,7 @@ export const store = configureStore({
   reducer: {
     [searchWordApi.reducerPath]: searchWordApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(searchWordApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(searchWordApi.middleware),
 });
 
 setupListeners(store.dispatch);

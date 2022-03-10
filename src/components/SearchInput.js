@@ -1,48 +1,48 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BiSearch } from 'react-icons/bi';
-import { useGetSearchWordQuery } from '../services/searchWord';
-import { SearchList } from './SearchList';
-import { useSelector, useDispatch } from 'react-redux';
-import { SearchItem } from './SearchItem';
+// import { useGetSearchWordQuery } from '../services/searchWord';
+// import { useSelector, useDispatch } from 'react-redux';
 
 
 export const SearchInput = (props) => {
   const [text, setText] = useState();
-  //const {inputValue, handleInputValue, handleSearch} = props;
-  const { data, error, isLoading, isSuccess, isError } = useGetSearchWordQuery(text);
-  const apiData = useSelector((state) => state.searchWord.queries);
-  console.log(apiData);
+	const {inputValue, handleInputValue, handleSearch, setIsFocus} = props;
+  // const { data, error, isLoading, isSuccess, isError } = useGetSearchWordQuery(inputValue);
+  // const apiData = useSelector((state) => state.searchWord.queries);
 
-  const handleInputValue = (e) => {
-    setText(e.target.value);
-  };
-
-  return (
-    <Container>
-      {isLoading && 'Loading...'}
-      {isError && error.message}
-      <InputContainer>
-        <BiSearch />
-        <Input placeholder="질환명을 입력해 주세요." onChange={handleInputValue} value={text} />
-        {isSuccess && data && data.map((el) => <SearchItem key={el.id} item={el.name} />)}
-      </InputContainer>
-      <ButtonContainer>
-        <Button>검색</Button>
-      </ButtonContainer>
-    </Container>
-  );
-};
+	return (
+		<Container>
+			<InputContainer>
+				<BiSearch/>
+				<Input
+					placeholder='질환명을 입력해 주세요.' 
+					onChange={(e) => handleInputValue(e)} 
+					onFocus={() => setIsFocus(true)}
+					onBlur={() => setIsFocus(false)}
+					value={inputValue}
+				/>
+			</InputContainer>
+			<ButtonContainer onClick={handleSearch}>
+				<Button>검색</Button>
+			</ButtonContainer>
+		</Container>
+	)
+}
 
 const Container = styled.div`
-  width: 41.25rem;
-  height: 4.05rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 42px;
-  background-color: #fff;
-`;
+	width: 41.25rem;
+	height: 4.05rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 42px;
+	background-color: #fff;
+
+	/* @media (max-width: 1040px) {
+		width: 97%;
+	} */
+`
 
 const InputContainer = styled.div`
   width: 85%;
