@@ -9,7 +9,7 @@ export const SearchList = (props) => {
 	return(
 		<Container>
 			<Compleate>추천 검색어</Compleate>
-			<SearchItem item={'dkasdfasdf'}/>
+			<SearchItem item={props.item}/>
 		</Container>
 	)
 }
