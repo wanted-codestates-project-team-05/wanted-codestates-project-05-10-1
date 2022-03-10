@@ -1,5 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+jsonconfig.json
 # dependencies
 /node_modules
 /.pnp
@@ -21,3 +21,210 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# 생성: https://www.toptal.com/developers/gitignore/api/macos,windows,webstorm,visualstudiocode,react
+# https://www.toptal.com/developers/gitignore?templates=macos,windows,webstorm,visualstudiocode,react에서 편집
+
+### 맥 OS ###
+# 일반적인
+.DS_스토어
+.AppleDouble
+.LSOverride
+
+# 아이콘은 두 개의 \r로 끝나야 합니다.
+상
+
+
+# 썸네일
+._*
+
+# 볼륨의 루트에 나타날 수 있는 파일
+.DocumentRevisions-V100
+.fseventsd
+.스포트라이트-V100
+.TemporaryItems
+.휴지통
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# 원격 AFP 공유에 잠재적으로 생성된 디렉토리
+.AppleDB
+.Apple데스크탑
+네트워크 휴지통 폴더
+임시 아이템
+.apdisk
+
+### 반응 ###
+.DS_*
+*.통나무
+로그
+**/*.지원.*
+**/*.뒤.*
+
+node_modules
+bower_components
+
+*.숭고한*
+
+PSD
+무지
+스케치
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Visual Studio Code의 로컬 기록
+.역사/
+
+# Visual Studio 코드 확장 빌드
+*.vsix
+
+### VisualStudioCode 패치 ###
+# 파일의 모든 로컬 기록 무시
+.역사
+.이오나이드
+
+# 프로젝트 스니펫 범위 지원
+
+### 웹스톰 ###
+# JetBrains IDE 포함: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm 및 Rider
+# 참조: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# 사용자별 항목
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/사전
+.idea/**/선반
+
+# AWS 사용자별
+.아이디어/**/aws.xml
+
+# 생성된 파일
+.idea/**/contentModel.xml
+
+# 민감하거나 이탈률이 높은 파일
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# 그라들
+.idea/**/gradle.xml
+.idea/**/라이브러리
+
+# 자동 가져오기 기능이 있는 Gradle 및 Maven
+# 자동 가져오기와 함께 Gradle 또는 Maven을 사용할 때 모듈 파일을 제외해야 하며,
+# 다시 생성되어 변동을 일으킬 수 있기 때문입니다. 사용하는 경우 주석 해제
+# 자동 가져오기.
+# .아이디어/인공물
+# .아이디어/컴파일러.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .아이디어/*.iml
+# .아이디어/모듈
+# *.iml
+# *.ipr
+
+# 씨메이크
+cmake-빌드-*/
+
+# 몽고 익스플로러 플러그인
+.idea/**/mongoSettings.xml
+
+# 파일 기반 프로젝트 형식
+*.iws
+
+# 인텔리제이
+밖/
+
+# mpeltonen/sbt-idea 플러그인
+.idea_modules/
+
+# JIRA 플러그인
+atlassian-ide-plugin.xml
+
+# 필기체 클로저 플러그인
+.아이디어/replstate.xml
+
+# SonarLint 플러그인
+.idea/sonarlint/
+
+# Crashlytics 플러그인(Android Studio 및 IntelliJ용)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# 에디터 기반 Rest 클라이언트
+.idea/httpRequests
+
+# Android 스튜디오 3.1 이상 직렬화된 캐시 파일
+.idea/caches/build_file_checksums.ser
+
+### 웹스톰 패치 ###
+# 댓글 이유: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+
+# *.iml
+# 모듈.xml
+# .아이디어/misc.xml
+# *.ipr
+
+# Sonarlint 플러그인
+# https://plugins.jetbrains.com/plugin/7973-sonarlint
+.idea/**/sonarlint/
+
+# SonarQube 플러그인
+# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
+.idea/**/sonarIssues.xml
+
+# 마크다운 네비게이터 플러그인
+# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
+.idea/**/markdown-navigator.xml
+.idea/**/markdown-navigator-enh.xml
+.idea/**/markdown-navigator/
+
+# 캐시 파일 생성 버그
+# https://youtrack.jetbrains.com/issue/JBR-2257 참조
+.아이디어/$CACHE_FILE$
+
+# CodeStream 플러그인
+# https://plugins.jetbrains.com/plugin/12206-codestream
+.아이디어/코드스트림.xml
+
+### 윈도우 ###
+# Windows 썸네일 캐시 파일
+Thumbs.db
+Thumbs.db:암호화 가능
+ehthumbs.db
+ehthumbs_vista.db
+
+# 덤프 파일
+*.스택 덤프
+
+# 폴더 설정 파일
+[Dd]esktop.ini
+
+# 파일 공유에 사용되는 휴지통
+$RECYCLE.BIN/
+
+# 윈도우 인스톨러 파일
+*.택시
+*.msi
+*.msix
+*.msm
+*.msp
+
+# 윈도우 단축키
+*.lnk
+
+# https://www.toptal.com/developers/gitignore/api/macos,windows,webstorm,visualstudiocode,react의 끝
