@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
 import useSWRImmutable from 'swr/immutable';
+// import { useSelector, useDispatch } from 'react-redux';
+import { useGetSearchWordQuery } from '../services/searchWord';
 
 import { SearchInput } from '../components/SearchInput';
 import { SearchList } from '../components/SearchList';
@@ -17,7 +19,10 @@ function SearchPage() {
 	const [selected, setSelected] = useState();
 	const [listIndex, setListIndex] = useState(-1);
 
-	const { data } = useSWRImmutable(inputValue ? `/api/v1/search-conditions/?name=${inputValue}` : null, Fetcher)
+	const { data, error, isLoading, isSuccess, isError } = useGetSearchWordQuery(inputValue);
+  // const apiData = useSelector((state) => state.searchWord.queries);
+
+	// const { data } = useSWRImmutable(inputValue ? `/api/v1/search-conditions/?name=${inputValue}` : null, Fetcher)
 
 	const handleKeyPress = (e) => {
 		if(e.keyCode === 40 && listIndex < 6){

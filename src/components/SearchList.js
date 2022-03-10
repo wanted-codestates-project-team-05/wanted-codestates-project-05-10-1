@@ -1,20 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SearchItem } from './SearchItem';
+import { useSelector } from 'react-redux';
 
 export const SearchList = (props) => {
 
 	const { searching, dataList, isFocus, selected, inputLength } = props;
 
+	const apiData = useSelector((state) => state.searchWord.queries);
+	console.log(apiData)
 
 	return(
 		<>
-			{
+			{/* {
 				isFocus ? 
 				<Container>
 					<Compleate>{inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
-					{dataList && 
-						dataList.filter((x,index) => index < 7).map((item, index) => (
+					{apiData && 
+						apiData.filter((x,index) => index < 7).map((item, index) => (
 							<div key={index} className={selected === item.id ? 'selected' : ''}>
 								<SearchItem item={item.name}/>
 							</div>
@@ -22,7 +25,7 @@ export const SearchList = (props) => {
 					}
 				</Container> 
 				: ""
-			}
+			} */}
 		</>
 	)
 };

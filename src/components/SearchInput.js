@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BiSearch } from 'react-icons/bi';
-import { useGetSearchWordQuery } from '../services/searchWord';
-import { SearchList } from './SearchList';
-import { useSelector, useDispatch } from 'react-redux';
-import { SearchItem } from './SearchItem';
+// import { useGetSearchWordQuery } from '../services/searchWord';
+// import { useSelector, useDispatch } from 'react-redux';
 
 
 export const SearchInput = (props) => {
   const [text, setText] = useState();
 	const {inputValue, handleInputValue, handleSearch, setIsFocus} = props;
-  const { data, error, isLoading, isSuccess, isError } = useGetSearchWordQuery(text);
-  const apiData = useSelector((state) => state.searchWord.queries);
-  console.log(apiData);
-
-
+  // const { data, error, isLoading, isSuccess, isError } = useGetSearchWordQuery(inputValue);
+  // const apiData = useSelector((state) => state.searchWord.queries);
 
 	return (
 		<Container>
