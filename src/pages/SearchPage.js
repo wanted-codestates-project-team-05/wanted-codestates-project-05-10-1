@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import _ from 'lodash';
@@ -11,10 +11,36 @@ function SearchPage() {
 	const [inputValue, setInputValue] = useState('');
 	const [dataList, setDataList] = useState();
 	const [isFocus, setIsFocus] = useState(false);
+	const [selected, setSelected] = useState();
+	const [listIndex, setListIndex] = useState(-1);
+
+	const handleKeyPress = (e) => {
+		if(e.keyCode === 40 && listIndex < 6){
+			setListIndex(listIndex+1);
+		} else if(e.keyCode === 38){
+			if(listIndex !== 0){
+				setListIndex(listIndex-1);
+			}
+		}
+	}
+
+	useEffect(() => {
+		if(dataList && listIndex !== -1){
+			setSelected(dataList[listIndex].id);
+		}
+	}, [listIndex])
+
+	//포커싱 아웃 되었을때 인덱스 초기화
+	useEffect(() => {
+		if(!isFocus) {
+			setListIndex(-1);
+			setSelected();
+		}
+	}, [isFocus])
 
 	const qeuryCall = (value) => {
 		//여기서 api하면 될듯
-		axios.get(`https://api.clinicaltrialskorea.com/api/v1/search-conditions/?name=${value}`)
+		axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/search-conditions/?name=${value}`)
 		.then((result) => {
 			setDataList(result.data)
 		})
@@ -25,14 +51,6 @@ function SearchPage() {
 	const handleInputValue = (e) => {
 		setInputValue(e.target.value)
 		delayCall(e.target.value);
-		// setTimeout(() => {
-		// 	if(ref.current.value === e.target.value){
-		// 		console.log('같데')
-		// 		setIsTyping(false);
-		// 	} else {
-		// 		clearTimeout(this.setTimeout)
-		// 	}
-		// }, 2000)
 	}
 
 	const handleSearch = () => {
@@ -41,7 +59,7 @@ function SearchPage() {
 
 
 	return (
-		<Container>
+		<Container onKeyDown={(e) => handleKeyPress(e)}>
 			<InputContainer>
 				<Title/>
 				<SearchInput
@@ -50,7 +68,12 @@ function SearchPage() {
 					handleInputValue={handleInputValue} 
 					handleSearch={handleSearch}/>
 			</InputContainer>
-			{inputValue.length > 0 ? <SearchList dataList={dataList} isFocus={isFocus}/> : ''}
+			<SearchList 
+				dataList={dataList} 
+				isFocus={isFocus} 
+				selected={selected} 
+				inputLength={inputValue.length}
+			/>
 		</Container>
 	)
 }

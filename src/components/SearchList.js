@@ -4,17 +4,20 @@ import { SearchItem } from './SearchItem';
 
 export const SearchList = (props) => {
 
-	const { loading, dataList, isFocus } = props;
+	const { searching, dataList, isFocus, selected, inputLength } = props;
+
 
 	return(
 		<>
 			{
 				isFocus ? 
 				<Container>
-					<Compleate>추천 검색어</Compleate>
+					<Compleate>{inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
 					{dataList && 
 						dataList.filter((x,index) => index < 7).map((item, index) => (
-							<SearchItem key={index} item={item.name}/>
+							<div key={index} className={selected === item.id ? 'selected' : ''}>
+								<SearchItem item={item.name}/>
+							</div>
 						))
 					}
 				</Container> 
@@ -37,6 +40,15 @@ const Container = styled.div`
 	padding-bottom: 10px;
 	box-sizing: border-box;
 	margin: 10px auto;
+
+	.selected {
+		font-weight: bold;
+		font-size: 1.5rem;
+		
+		svg {
+			font-size: 1.6rem;
+		}
+	}
 `
 
 const Compleate = styled.div`
