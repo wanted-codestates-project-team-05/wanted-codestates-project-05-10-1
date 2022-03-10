@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import _ from 'lodash';
+import useSWRImmutable from 'swr/immutable';
+
 import { SearchInput } from '../components/SearchInput';
 import { SearchList } from '../components/SearchList';
 import { Title } from '../components/Title';
+import { Fetcher } from '../util/Fetcher';
+
 
 function SearchPage() {
 
@@ -13,6 +16,8 @@ function SearchPage() {
 	const [isFocus, setIsFocus] = useState(false);
 	const [selected, setSelected] = useState();
 	const [listIndex, setListIndex] = useState(-1);
+
+	const { data } = useSWRImmutable(inputValue ? `/api/v1/search-conditions/?name=${inputValue}` : null, Fetcher)
 
 	const handleKeyPress = (e) => {
 		if(e.keyCode === 40 && listIndex < 6){
@@ -38,12 +43,24 @@ function SearchPage() {
 		}
 	}, [isFocus])
 
+	useEffect(() => {
+		setDataList(data)
+	}, [data])
+
 	const qeuryCall = (value) => {
 		//여기서 api하면 될듯
-		axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/search-conditions/?name=${value}`)
-		.then((result) => {
-			setDataList(result.data)
-		})
+		// if(window.localStorage.getItem("search")){
+		// 	console.log('있다.?')
+		// } else {
+		// 	axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/search-conditions/?name=${value}`)
+		// 	.then((result) => {
+		// 		setDataList(result.data)
+		// 		window.localStorage.setItem("search", value);
+		// 		window.localStorage.setItem("searchData", result.data.map((item) => item.name));
+		// 		window.localStorage.setItem("searchId", result.data.map((item) => item.id));
+		// 	})
+		// }
+		
 	}
 
 	const delayCall = useRef(_.debounce((q) => qeuryCall(q), 1000)).current;
