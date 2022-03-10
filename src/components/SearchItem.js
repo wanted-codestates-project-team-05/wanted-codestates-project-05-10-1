@@ -20,6 +20,7 @@ const Container = styled.div`
 	background-color: transparent;
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 	
 	svg {
 		margin-right: 10px;
