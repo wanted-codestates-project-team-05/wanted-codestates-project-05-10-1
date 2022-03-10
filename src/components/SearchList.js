@@ -4,20 +4,32 @@ import { SearchItem } from './SearchItem';
 
 export const SearchList = (props) => {
 
-	const { loading } = props;
+	const { loading, dataList, isFocus } = props;
 
 	return(
-		<Container>
-			<Compleate>추천 검색어</Compleate>
-			<SearchItem item={props.item}/>
-		</Container>
+		<>
+			{
+				isFocus ? 
+				<Container>
+					<Compleate>추천 검색어</Compleate>
+					{dataList && 
+						dataList.filter((x,index) => index < 7).map((item, index) => (
+							<SearchItem key={index} item={item.name}/>
+						))
+					}
+				</Container> 
+				: ""
+			}
+		</>
 	)
-}
+};
 
 const Container = styled.div`
 	width: 41.25rem;
 	min-height: 50px;
+	max-height: 30rem;
 	height: auto;
+	overflow-y: scroll;
 	border-radius: 26px;
 	background-color: #fff;
 	padding-left: 20px;
