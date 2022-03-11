@@ -51,9 +51,11 @@ https://wanted-codestates-project-05-10-1.vercel.app/
 - 기본 검색창 구현
  <img width="704" alt="스크린샷 2022-03-11 오후 2 16 41" src="https://user-images.githubusercontent.com/22316798/157807494-b905a5d3-b8f6-41a0-80bf-d06d9d9b6c1b.png">
 - 검색시 api호출 최적화를 위한 디바운스 구현 (입력 마다 호출하지 않고 자신만의 전략으로 API 호출 횟수를 줄입니다.)
+
 - 키보드만으로도 추천 검색어들로 이동이 가능하게 구현
  <img width="704" alt="스크린샷 2022-03-11 오후 2 16 41" src="https://user-images.githubusercontent.com/22316798/157807557-99e7fbf5-45cf-4a72-bc5f-37391965eac3.gif">
   - 키보드를 위아래로 누르면 index의 값을 저장했다가 리스트의 id값과 같으면 선택된것과 같은 효과를 보이도록 스타일을 조정해주었습니다.
+
 - 검색창 상태에 따른 다른 문구 출력 구현
  <img width="704" alt="스크린샷 2022-03-11 오후 2 16 41" src="https://user-images.githubusercontent.com/22316798/157807564-84fa751d-fe0f-47e8-afd2-6aaa0cb4e4ca.gif">
 
