@@ -3,46 +3,41 @@ import styled from 'styled-components';
 import { useGetSearchWordQuery } from '../services/searchWord';
 import { useDispatch } from 'react-redux';
 import { dataListUpdate } from '../services/dataListSlice';
+import useDebounce from '../util/useDebounce';
 
 import { SearchInput } from '../components/SearchInput';
 import { SearchList } from '../components/SearchList';
 import { Title } from '../components/Title';
 
-function useDebounce(value, delay) {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
-
-  return debouncedValue;
-}
-
 function SearchPage() {
 
 	const [inputValue, setInputValue] = useState('');
-	const debounceInputValue = useDebounce(inputValue, 1000);
+	const [isSearching, setIsSearching] = useState(false);
+	const debounceInputValue = useDebounce(inputValue, 700);
 	const [dataList, setDataList] = useState();
 	const [isFocus, setIsFocus] = useState(false);
 	const [selected, setSelected] = useState();
 	const [listIndex, setListIndex] = useState(-1);
-  const dispatch = useDispatch();
-  const { data } = useGetSearchWordQuery(debounceInputValue);
+	const dispatch = useDispatch();
+	const { data } = useGetSearchWordQuery(debounceInputValue, 
+		{ skip: debounceInputValue === '' ? true : false }
+	);
+		
+	const coments = <>국내 모든 임상시험 검색하고<br/>온라인으로 참여하기</>;
 
 	const handleKeyPress = (e) => {
 		if(e.keyCode === 40 && listIndex < 6){
       setListIndex(listIndex + 1);
 		} else if(e.keyCode === 38){
-      if(listIndex !== 0){
+      if(listIndex > 0){
 				setListIndex(listIndex-1);
 			}
 		}
+	}
+
+	const handleInitSelelcted = () => {
+		setListIndex(-1);
+		setSelected();
 	}
 
 	useEffect(() => {
@@ -54,8 +49,7 @@ function SearchPage() {
 	//포커싱 아웃 되었을때 인덱스 초기화
 	useEffect(() => {
 		if(!isFocus) {
-			setListIndex(-1);
-      setSelected();
+			handleInitSelelcted();
 		}
 	}, [isFocus])
 
@@ -64,18 +58,25 @@ function SearchPage() {
     dispatch(dataListUpdate(data))
 	}, [data])
 
+	useEffect(() => {
+		handleInitSelelcted();
+		setIsSearching(false)
+	}, [debounceInputValue])
+
 	const handleInputValue = (e) => {
     setInputValue(e.target.value)
   }
-  
 	const handleSearch = () => {
     setInputValue('')
+		setIsSearching(true)
 	}
+
+
 
 	return (
     <Container onKeyDown={(e) => handleKeyPress(e)}>
       <InputContainer>
-        <Title />
+        <Title coments={coments}/>
         <SearchInput
           setIsFocus={setIsFocus}
           inputValue={inputValue}
@@ -84,7 +85,12 @@ function SearchPage() {
           handleKeyPress={handleKeyPress}
         />
       </InputContainer>
-      {inputValue.length > 0 ? <SearchList dataList={dataList} isFocus={isFocus} /> : ''}
+			<SearchList
+				isSearching={isSearching}
+				isFocus={isFocus} 
+				selected={selected} 
+				inputLength={inputValue.length}
+			/>
     </Container>
   );
 }
