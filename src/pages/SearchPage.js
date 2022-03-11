@@ -20,9 +20,7 @@ function SearchPage() {
 	const [listIndex, setListIndex] = useState(-1);
 
 	const { data, error, isLoading, isSuccess, isError } = useGetSearchWordQuery(inputValue);
-  // const apiData = useSelector((state) => state.searchWord.queries);
 
-	// const { data } = useSWRImmutable(inputValue ? `/api/v1/search-conditions/?name=${inputValue}` : null, Fetcher)
 
 	const handleKeyPress = (e) => {
 		if(e.keyCode === 40 && listIndex < 6){
