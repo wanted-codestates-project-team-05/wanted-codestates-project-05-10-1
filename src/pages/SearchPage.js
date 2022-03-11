@@ -65,7 +65,6 @@ function SearchPage() {
 		// 		window.localStorage.setItem("searchId", result.data.map((item) => item.id));
 		// 	})
 		// }
-		
 	}
 
 	const delayCall = useRef(_.debounce((q) => qeuryCall(q), 1000)).current;
@@ -96,15 +95,17 @@ function SearchPage() {
 				selected={selected} 
 				inputLength={inputValue.length}
 			/>
+			{inputValue.length > 0 ? <SearchList dataList={dataList} isFocus={isFocus}/> : ''}
 		</Container>
 	)
 }
+
 
 const Container = styled.div`
 	width: 100%;
 	height: 100vh;
 	background-color: #CAE9FF;
-`
+	`;
 
 const InputContainer = styled.div`
 	width: 100%;
@@ -114,6 +115,6 @@ const InputContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	padding-top: 150px;
-`
+	`;
 
 export default SearchPage;

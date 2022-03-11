@@ -6,10 +6,7 @@ import { BiSearch } from 'react-icons/bi';
 
 
 export const SearchInput = (props) => {
-  const [text, setText] = useState();
 	const {inputValue, handleInputValue, handleSearch, setIsFocus} = props;
-  // const { data, error, isLoading, isSuccess, isError } = useGetSearchWordQuery(inputValue);
-  // const apiData = useSelector((state) => state.searchWord.queries);
 
 	return (
 		<Container>

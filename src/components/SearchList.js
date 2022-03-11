@@ -7,9 +7,6 @@ export const SearchList = (props) => {
 
 	const { searching, dataList, isFocus, selected, inputLength } = props;
 
-	const apiData = useSelector((state) => state.searchWord.queries);
-	console.log(apiData)
-
 	return(
 		<>
 			{/* {
