@@ -14,7 +14,7 @@ export const SearchList = (props) => {
 				<Container>
 					<Compleate>{inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
 					{apiData && 
-						apiData.filter((x,index) => index < 7).map((item, index) => ( 검색어 없을 때 검색어 없음 추가)
+						apiData.filter((x,index) => index < 7).map((item, index) => 
 							<div key={index} className={selected === item.id ? 'selected' : ''}>
 								<SearchItem item={item.name}/>
 							</div>

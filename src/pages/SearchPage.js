@@ -21,7 +21,6 @@ function SearchPage() {
 
 	const { data, error, isLoading, isSuccess, isError } = useGetSearchWordQuery(inputValue);
 
-
 	const handleKeyPress = (e) => {
 		if(e.keyCode === 40 && listIndex < 6){
 			setListIndex(listIndex+1);
