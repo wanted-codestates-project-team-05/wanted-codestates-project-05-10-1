@@ -50,6 +50,7 @@ https://wanted-codestates-project-05-10-1.vercel.app/
 ### 구현한 내용
 - 기본 검색창 구현
  <img width="704" alt="스크린샷 2022-03-11 오후 2 16 41" src="https://user-images.githubusercontent.com/22316798/157807494-b905a5d3-b8f6-41a0-80bf-d06d9d9b6c1b.png">
+
 - 검색시 api호출 최적화를 위한 디바운스 구현 (입력 마다 호출하지 않고 자신만의 전략으로 API 호출 횟수를 줄입니다.)
 
 - 키보드만으로도 추천 검색어들로 이동이 가능하게 구현
