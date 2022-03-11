@@ -14,7 +14,7 @@ export const SearchList = (props) => {
 			{
 				isFocus ? 
 				<Container>
-					<Compleate>{inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
+					<Compleate>{isSearching ? "검색중..." : inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
 					{reduxDataList && inputLength !== 0 &&
 						reduxDataList.filter((x,index) => index < 7).map((item, index) => (
 							<div key={index} className={selected === item.id ? 'selected' : ''}>
