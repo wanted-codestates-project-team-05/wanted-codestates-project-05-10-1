@@ -9,25 +9,24 @@ export const SearchList = (props) => {
 
 	const reduxDataList = useSelector(state => state.dataList.value);
 
-	return (
-    <>
-      {isFocus ? (
-        <Container>
-          <Compleate>{reduxDataList ? '추천 검색어' : '검색어 없음'}</Compleate>
-          {reduxDataList &&
-            reduxDataList
-              .filter((x, index) => index < 7)
-              .map((item, index) => (
-                <div key={index} className={selected === item.id ? 'selected' : ''}>
-                  <SearchItem item={item.name} />
-                </div>
-              ))}
-        </Container>
-      ) : (
-        ''
-      )}
-    </>
-  );
+	return(
+		<>
+			{
+				isFocus ? 
+				<Container>
+					<Compleate>{inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
+					{reduxDataList && 
+						reduxDataList.filter((x,index) => index < 7).map((item, index) => (
+							<div key={index} className={selected === item.id ? 'selected' : ''}>
+								<SearchItem item={item.name}/>
+							</div>
+						))
+					}
+				</Container> 
+				: ""
+			}
+		</>
+	)
 };
 
 const Container = styled.div`

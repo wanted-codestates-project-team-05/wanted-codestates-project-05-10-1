@@ -67,7 +67,6 @@ function SearchPage() {
 	const handleInputValue = (e) => {
     setInputValue(e.target.value)
   }
-  
 	const handleSearch = () => {
     setInputValue('')
 	}
@@ -85,7 +84,6 @@ function SearchPage() {
         />
       </InputContainer>
 			<SearchList 
-				dataList={dataList} 
 				isFocus={isFocus} 
 				selected={selected} 
 				inputLength={inputValue.length}
