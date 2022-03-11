@@ -84,7 +84,12 @@ function SearchPage() {
           handleKeyPress={handleKeyPress}
         />
       </InputContainer>
-      {inputValue.length > 0 ? <SearchList dataList={dataList} isFocus={isFocus} /> : ''}
+			<SearchList 
+				dataList={dataList} 
+				isFocus={isFocus} 
+				selected={selected} 
+				inputLength={inputValue.length}
+			/>
     </Container>
   );
 }
