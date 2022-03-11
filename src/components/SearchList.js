@@ -5,16 +5,18 @@ import { useSelector } from 'react-redux';
 
 export const SearchList = (props) => {
 
-	const { searching, dataList, isFocus, selected, inputLength } = props;
+	const { searching, isFocus, selected, inputLength } = props;
+
+	const reduxDataList = useSelector(state => state.dataList.value);
 
 	return(
 		<>
-			{/* {
+			{
 				isFocus ? 
 				<Container>
 					<Compleate>{inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
-					{apiData && 
-						apiData.filter((x,index) => index < 7).map((item, index) => 
+					{reduxDataList && 
+						reduxDataList.filter((x,index) => index < 7).map((item, index) => (
 							<div key={index} className={selected === item.id ? 'selected' : ''}>
 								<SearchItem item={item.name}/>
 							</div>
@@ -22,7 +24,7 @@ export const SearchList = (props) => {
 					}
 				</Container> 
 				: ""
-			} */}
+			}
 		</>
 	)
 };

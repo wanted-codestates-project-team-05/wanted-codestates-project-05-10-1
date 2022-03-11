@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BiSearch } from 'react-icons/bi';
-// import { useGetSearchWordQuery } from '../services/searchWord';
-// import { useSelector, useDispatch } from 'react-redux';
-
 
 export const SearchInput = (props) => {
 	const {inputValue, handleInputValue, handleSearch, setIsFocus} = props;
