@@ -15,16 +15,16 @@ export const SearchItem = (props) => {
 }
 
 const Container = styled.div`
-	width: 100%;
-	height: 2.5rem;
-	background-color: transparent;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	
-	svg {
-		margin-right: 10px;
-		font-size: 1.2rem;
-	}
-`
+  width: 100%;
+  height: 2.5rem;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+`;
 
