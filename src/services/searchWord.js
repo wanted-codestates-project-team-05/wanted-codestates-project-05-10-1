@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const searchWordApi = createApi({
   reducerPath: 'searchWord',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.clinicaltrialskorea.com',
+    baseUrl: process.env.REACT_APP_BASE_URL,
   }),
   keepUnusedDataFor: 30,
   endpoints: (builder) => ({
