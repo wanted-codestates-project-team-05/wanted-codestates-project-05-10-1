@@ -32,14 +32,14 @@ function SearchPage() {
 	const [isFocus, setIsFocus] = useState(false);
 	const [selected, setSelected] = useState();
 	const [listIndex, setListIndex] = useState(-1);
-	const dispatch = useDispatch();
-	const { data } = useGetSearchWordQuery(debounceInputValue);
+  const dispatch = useDispatch();
+  const { data } = useGetSearchWordQuery(debounceInputValue);
 
 	const handleKeyPress = (e) => {
 		if(e.keyCode === 40 && listIndex < 6){
-			setListIndex(listIndex+1);
+      setListIndex(listIndex + 1);
 		} else if(e.keyCode === 38){
-			if(listIndex !== 0){
+      if(listIndex !== 0){
 				setListIndex(listIndex-1);
 			}
 		}
@@ -47,7 +47,7 @@ function SearchPage() {
 
 	useEffect(() => {
 		if(dataList && listIndex !== -1){
-			setSelected(dataList[listIndex].id);
+      setSelected(dataList[listIndex].id);
 		}
 	}, [listIndex])
 
@@ -55,47 +55,43 @@ function SearchPage() {
 	useEffect(() => {
 		if(!isFocus) {
 			setListIndex(-1);
-			setSelected();
+      setSelected();
 		}
 	}, [isFocus])
 
 	useEffect(() => {
 		setDataList(data)
-		dispatch(dataListUpdate(data))
+    dispatch(dataListUpdate(data))
 	}, [data])
 
 	const handleInputValue = (e) => {
-		setInputValue(e.target.value)
-	}
-
+    setInputValue(e.target.value)
+  }
+  
 	const handleSearch = () => {
-		setInputValue('')
+    setInputValue('')
 	}
-
 
 	return (
-		<Container onKeyDown={(e) => handleKeyPress(e)}>
-			<InputContainer>
-				<Title/>
-				<SearchInput
-					setIsFocus={setIsFocus}
-					inputValue={inputValue} 
-					handleInputValue={handleInputValue} 
-					handleSearch={handleSearch}/>
-			</InputContainer>
-			<SearchList 
-				isFocus={isFocus} 
-				selected={selected} 
-				inputLength={inputValue.length}
-			/>
-			{inputValue.length > 0 ? <SearchList dataList={dataList} isFocus={isFocus}/> : ''}
-		</Container>
-	)
+    <Container onKeyDown={(e) => handleKeyPress(e)}>
+      <InputContainer>
+        <Title />
+        <SearchInput
+          setIsFocus={setIsFocus}
+          inputValue={inputValue}
+          handleInputValue={handleInputValue}
+          handleSearch={handleSearch}
+          handleKeyPress={handleKeyPress}
+        />
+      </InputContainer>
+      {inputValue.length > 0 ? <SearchList dataList={dataList} isFocus={isFocus} /> : ''}
+    </Container>
+  );
 }
 
 
 const Container = styled.div`
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 	background-color: #CAE9FF;
 	`;
