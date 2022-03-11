@@ -5,29 +5,28 @@ import { useSelector } from 'react-redux';
 
 export const SearchList = (props) => {
 
-	const { searching, isFocus, selected, inputLength } = props;
+	const { isSearching, isFocus, selected, inputLength } = props;
 
-	const reduxDataList = useSelector(state => state.dataList.value);
+	const reduxDataList = useSelector(state => isSearching ? '' : state.dataList.value);
 
-	return (
-    <>
-      {isFocus ? (
-        <Container>
-          <Compleate>{reduxDataList ? '추천 검색어' : '검색어 없음'}</Compleate>
-          {reduxDataList &&
-            reduxDataList
-              .filter((x, index) => index < 7)
-              .map((item, index) => (
-                <div key={index} className={selected === item.id ? 'selected' : ''}>
-                  <SearchItem item={item.name} />
-                </div>
-              ))}
-        </Container>
-      ) : (
-        ''
-      )}
-    </>
-  );
+	return(
+		<>
+			{
+				isFocus ? 
+				<Container>
+					<Compleate>{isSearching ? "검색중..." : inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
+					{reduxDataList && inputLength !== 0 &&
+						reduxDataList.filter((x,index) => index < 7).map((item, index) => (
+							<div key={index} className={selected === item.id ? 'selected' : ''}>
+								<SearchItem item={item.name}/>
+							</div>
+						))
+					}
+				</Container> 
+				: ""
+			}
+		</>
+	)
 };
 
 const Container = styled.div`
@@ -50,8 +49,7 @@ const Container = styled.div`
     margin: 0;
     left: 0;
     width: 100%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+		border-radius: 0;
     z-index: 10;
   }
 
