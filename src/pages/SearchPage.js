@@ -27,7 +27,7 @@ function SearchPage() {
 		if(e.keyCode === 40 && listIndex < 6){
       setListIndex(listIndex + 1);
 		} else if(e.keyCode === 38){
-      if(listIndex !== 0){
+      if(listIndex > 0){
 				setListIndex(listIndex-1);
 			}
 		}

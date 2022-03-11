@@ -49,8 +49,7 @@ const Container = styled.div`
     margin: 0;
     left: 0;
     width: 100%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+		border-radius: 0;
     z-index: 10;
   }
 
