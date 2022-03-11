@@ -5,10 +5,11 @@ export const searchWordApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.clinicaltrialskorea.com',
   }),
-  keepUnusedDataFor: 100,
+  keepUnusedDataFor: 30,
   endpoints: (builder) => ({
     getSearchWord: builder.query({
       query: (keyword) => `/api/v1/search-conditions/?name=${keyword}`,
+      keepUnusedDataFor: 15,
     })
   })
 });

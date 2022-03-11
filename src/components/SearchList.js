@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 
 export const SearchList = (props) => {
 
-	const { searching, isFocus, selected, inputLength } = props;
+	const { isSearching, isFocus, selected, inputLength } = props;
 
-	const reduxDataList = useSelector(state => state.dataList.value);
+	const reduxDataList = useSelector(state => isSearching ? '' : state.dataList.value);
 
 	return(
 		<>
@@ -15,7 +15,7 @@ export const SearchList = (props) => {
 				isFocus ? 
 				<Container>
 					<Compleate>{inputLength ? "추천 검색어" : "검색어 없음"}</Compleate>
-					{reduxDataList && 
+					{reduxDataList && inputLength !== 0 &&
 						reduxDataList.filter((x,index) => index < 7).map((item, index) => (
 							<div key={index} className={selected === item.id ? 'selected' : ''}>
 								<SearchItem item={item.name}/>
